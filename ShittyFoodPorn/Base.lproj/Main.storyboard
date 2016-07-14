@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SsH-NX-bbh">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="HdD-nO-1Ys">
+            <objects>
+                <navigationController id="SsH-NX-bbh" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mY2-B9-rRJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="d5H-Xr-S9R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yrp-cI-tsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1306" y="99"/>
+        </scene>
+        <!--The latest from Shitty Food Porn-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="FoodPhotosDisplayVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="j6g-NX-VEy">
+                                <rect key="frame" x="25" y="0.0" width="550" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="2rA-FG-bvy">
+                                    <size key="itemSize" width="175" height="175"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Food Photo Cell" id="lUB-TH-wG3" customClass="FoodThumbnailPhotoCell">
+                                        <rect key="frame" x="0.0" y="64" width="175" height="175"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3vO-GQ-2kv">
+                                                    <rect key="frame" x="0.0" y="0.0" width="175" height="175"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="3vO-GQ-2kv" firstAttribute="leading" secondItem="lUB-TH-wG3" secondAttribute="leadingMargin" constant="-8" id="B8D-Lr-8C1"/>
+                                            <constraint firstItem="3vO-GQ-2kv" firstAttribute="top" secondItem="lUB-TH-wG3" secondAttribute="topMargin" constant="-8" id="NHW-aY-hL4"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="3vO-GQ-2kv" secondAttribute="bottom" constant="-8" id="QFj-b5-pki"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="3vO-GQ-2kv" secondAttribute="trailing" constant="-8" id="nBC-Rt-bIh"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="thumbnailPhotoView" destination="3vO-GQ-2kv" id="yyn-FZ-3ud"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="j6g-NX-VEy" secondAttribute="bottom" id="0hk-J2-Fsy"/>
+                            <constraint firstItem="j6g-NX-VEy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="2xc-UI-foF"/>
+                            <constraint firstItem="j6g-NX-VEy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="5" id="D3L-7Q-3Lx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="j6g-NX-VEy" secondAttribute="trailing" constant="5" id="Q2M-FU-C7e"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="The latest from Shitty Food Porn" id="rmT-s7-eHC"/>
+                    <connections>
+                        <outlet property="collectionView" destination="j6g-NX-VEy" id="cJi-Sf-n2z"/>
+                        <segue destination="Z3Y-s0-jsW" kind="show" identifier="Display Chosen Image" id="3q8-oX-973"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-551" y="99"/>
+        </scene>
+        <!--ImageVC-->
+        <scene sceneID="uch-Al-WIG">
+            <objects>
+                <viewController id="Z3Y-s0-jsW" customClass="ImageVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6ro-UW-ciM"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZNj-pd-z91"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Igg-v1-dlH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Kq-Li-lny">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Kq-Li-lny" firstAttribute="leading" secondItem="Igg-v1-dlH" secondAttribute="leadingMargin" constant="-20" id="0fn-Ha-uuj"/>
+                            <constraint firstItem="7Kq-Li-lny" firstAttribute="top" secondItem="6ro-UW-ciM" secondAttribute="bottom" id="LML-jD-rSA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Kq-Li-lny" secondAttribute="trailing" constant="-20" id="QLy-lb-XQK"/>
+                            <constraint firstItem="ZNj-pd-z91" firstAttribute="top" secondItem="7Kq-Li-lny" secondAttribute="bottom" id="khz-P6-ziJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fullImageVIew" destination="7Kq-Li-lny" id="jCF-Er-x1O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aos-eC-zKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="196" y="99"/>
+        </scene>
+    </scenes>
+</document>
