@@ -9,8 +9,9 @@
 #import "ImageVC.h"
 #import "UIImageView+AFNetworking.h"
 
-@interface ImageVC ()
+@interface ImageVC () <UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *fullImageVIew;
 
 @end
@@ -19,8 +20,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.fullImageVIew.contentMode = UIViewContentModeScaleAspectFit;
+    
+    self.scrollView.minimumZoomScale = 1.0;
+    self.scrollView.maximumZoomScale = 4.0;
+    self.scrollView.contentSize = self.fullImageVIew.image.size;
+    self.scrollView.delegate = self;
+    self.scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     [self.fullImageVIew setImageWithURL:self.imageURL];
 }
 
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.fullImageVIew;
+}
+
 @end
+
+
+

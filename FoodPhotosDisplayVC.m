@@ -49,7 +49,7 @@ NSString *const kIMAGE_FILE_EXTENSION = @".png";
 
 - (void)makeImgurRequests {
     
-    NSURL *url = [NSURL URLWithString:@"https://imgur.com/r/shitamericanssay/new.json"];
+    NSURL *url = [NSURL URLWithString:@"https://imgur.com/r/shittyfoodporn/new.json"];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
@@ -124,7 +124,7 @@ NSString *const kIMAGE_FILE_EXTENSION = @".png";
         
         cell.thumbnailPhotoView.image = image;
         CATransition *transition = [CATransition animation];
-        transition.duration = 1.0f;
+        transition.duration = 0.3f;
         transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         transition.type = kCATransitionFade;
         

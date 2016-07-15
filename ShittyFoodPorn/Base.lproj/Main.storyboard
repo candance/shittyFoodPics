@@ -99,20 +99,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Kq-Li-lny">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="6" translatesAutoresizingMaskIntoConstraints="NO" id="so1-Yx-dam">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7Kq-Li-lny" userLabel="FullImageView">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7Kq-Li-lny" firstAttribute="leading" secondItem="so1-Yx-dam" secondAttribute="leading" id="7v0-A4-rNe"/>
+                                    <constraint firstAttribute="height" secondItem="7Kq-Li-lny" secondAttribute="height" id="WY2-uH-G4a"/>
+                                    <constraint firstAttribute="bottom" secondItem="7Kq-Li-lny" secondAttribute="bottom" id="cHR-AX-EXX"/>
+                                    <constraint firstAttribute="trailing" secondItem="7Kq-Li-lny" secondAttribute="trailing" id="cUh-N9-EMA"/>
+                                    <constraint firstItem="7Kq-Li-lny" firstAttribute="top" secondItem="so1-Yx-dam" secondAttribute="top" id="l2p-RP-wpb"/>
+                                    <constraint firstAttribute="width" secondItem="7Kq-Li-lny" secondAttribute="width" id="vEZ-92-eOV"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="7Kq-Li-lny" firstAttribute="leading" secondItem="Igg-v1-dlH" secondAttribute="leadingMargin" constant="-20" id="0fn-Ha-uuj"/>
-                            <constraint firstItem="7Kq-Li-lny" firstAttribute="top" secondItem="6ro-UW-ciM" secondAttribute="bottom" id="LML-jD-rSA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="7Kq-Li-lny" secondAttribute="trailing" constant="-20" id="QLy-lb-XQK"/>
-                            <constraint firstItem="ZNj-pd-z91" firstAttribute="top" secondItem="7Kq-Li-lny" secondAttribute="bottom" id="khz-P6-ziJ"/>
+                            <constraint firstItem="so1-Yx-dam" firstAttribute="leading" secondItem="Igg-v1-dlH" secondAttribute="leading" id="0GW-2B-Iwe"/>
+                            <constraint firstItem="so1-Yx-dam" firstAttribute="top" secondItem="6ro-UW-ciM" secondAttribute="bottom" id="1Jz-Xw-Ghl"/>
+                            <constraint firstAttribute="trailing" secondItem="so1-Yx-dam" secondAttribute="trailing" id="Ab2-cA-7RL"/>
+                            <constraint firstItem="ZNj-pd-z91" firstAttribute="top" secondItem="so1-Yx-dam" secondAttribute="bottom" id="L90-UY-ftA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="fullImageVIew" destination="7Kq-Li-lny" id="jCF-Er-x1O"/>
+                        <outlet property="scrollView" destination="so1-Yx-dam" id="Ygn-nV-mWx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aos-eC-zKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
