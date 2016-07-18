@@ -10,6 +10,7 @@
 #import "FoodThumbnailPhotoCell.h"
 #import "ImageVC.h"
 #import "UIImageView+AFNetworking.h"
+#import "AFNetworking.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface FoodPhotosDisplayVC () <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -42,14 +43,13 @@
     [self makeImgurRequests];
 }
 
-#define IMGUR_PHOTO_ID @"hash"
+#define ImgurAPIKey @"3b73e207093f0c4"
+#define IMGUR_PHOTO_URL @"link"
 #define IMGUR_PHOTO_TITLE @"title"
-NSString *const kBASE_URL = @"http://i.imgur.com/";
-NSString *const kIMAGE_FILE_EXTENSION = @".png";
+//NSString *const kBASE_URL = @"http://i.imgur.com/";
+//NSString *const kIMAGE_FILE_EXTENSION = @".jpg";
 
 - (void)makeImgurRequests {
-    
-    NSURL *url = [NSURL URLWithString:@"https://imgur.com/r/shittyfoodporn/new.json"];
     
     UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     spinner.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
@@ -60,46 +60,22 @@ NSString *const kIMAGE_FILE_EXTENSION = @".png";
     
     [spinner startAnimating];
     
-    // unblocking main queue through multithreading
-    dispatch_queue_t fetchQ = dispatch_queue_create("imgur photos fetcher", NULL);
-    dispatch_sync(fetchQ, ^{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"Client-ID 3b73e207093f0c4" forHTTPHeaderField:@"Authorization"];
+    [manager GET:@"https://api.imgur.com/3/gallery/r/shittyfoodporn" parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         
-        NSData *jsonResults = [NSData dataWithContentsOfURL:url];
-        NSError *error;
-        NSDictionary *photosTopLevelResults = [NSJSONSerialization JSONObjectWithData:jsonResults
-                                                                      options:kNilOptions
-                                                                        error:&error];
-        
-        // removing () from first JSON fetch
+        NSDictionary *photosTopLevelResults = (NSDictionary *)responseObject;
         self.photosResults = [photosTopLevelResults objectForKey:@"data"];
-        
-//        NSLog(@"Photos Results:%@", photosResults);
-        
-        NSArray *photosIDForURL = [self.photosResults valueForKeyPath:IMGUR_PHOTO_ID];
-        
-//        NSLog(@"Photos ID For URL:%@", photosIDForURL);
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.photosURLStrings = [self createImageURL:photosIDForURL];
-            [spinner stopAnimating];
-            [self.refreshControl endRefreshing];
-            [self.collectionView reloadData];
-        });
-    });
-}
+        NSLog(@"Photos Results:%@", self.photosResults);
+        self.photosURLStrings = [self.photosResults valueForKeyPath:IMGUR_PHOTO_URL];
+        [spinner stopAnimating];
+        [self.refreshControl endRefreshing];
+        [self.collectionView reloadData];
 
-- (NSArray *)createImageURL:(NSArray *)photoIdArray {
-    
-    NSMutableArray *photosURL = [NSMutableArray new];
-    
-    for (NSString *photoID in photoIdArray) {
-        NSString *firstPartURL = [kBASE_URL stringByAppendingString:photoID];
-        NSString *completeURL = [firstPartURL stringByAppendingString:kIMAGE_FILE_EXTENSION];
-        
-        [photosURL addObject:completeURL];
-    }
-    
-    return [photosURL copy];
+    } failure:^(NSURLSessionTask *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
